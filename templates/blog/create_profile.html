@@ -1,0 +1,36 @@
+{% extends "blog/base.html" %}
+{%block content%}
+<div class="content-section">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <strong>Error!</strong> Please correct the following errors:
+                <ul>
+                    {% for error in form.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+            <div class="form-group">
+                <div class="form-group">
+                    <label>Your Username</label>
+                    {{form.username}}
+                    <i class="icon_mail_alt"></i>   
+                </div>
+                <div class="form-group">
+                    <label>Upload Image</label>
+                    {{form.image}} 
+                    <i class="icon_lock_alt"></i>
+                </div> 
+            </div>
+    </form>
+    <button class="btn btn-outline-info" type="submit">Create</button>
+
+    <div class="clearfix add_bottom_15">
+						
+        <div class="float-right mt-1"><a class="btn btn-outline-info" href="{% url 'user_account:profile'%}">View Profile</a></div>
+    </div>
+</div>
+{% endblock content %} 
